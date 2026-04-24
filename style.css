@@ -1,297 +1,398 @@
 /* style.css — SafeBoards — contraste revisado */
 
 :root {
-    /* Brand */
-    --sb-primary:       #07101f;   /* azul-marinho profundo */
-    --sb-secondary:     #0d1a2e;   /* azul-marinho médio */
-    --sb-accent:        #1a55e3;   /* azul vibrante */
-    --sb-accent-dark:   #1040b8;   /* azul escuro para hover */
-    --sb-teal:          #0fa87a;   /* verde-teal da marca */
-  
-    /* Superfícies */
-    --sb-bg:            #dde4ef;   /* fundo principal (mais escuro que #eef2f7 → texto muted contrasta mais) */
-    --sb-surface:       #ffffff;   /* cards / navbar */
-    --sb-surface-alt:   #f0f4fa;   /* fundo alternativo de seções */
-    --sb-border:        #b8c6d9;   /* bordas visíveis (escurecido de #dbe3ee) */
-  
-    /* Texto */
-    --sb-text:          #0a1628;   /* texto base — quase preto */
-    --sb-text-strong:   #020c1b;   /* headings — preto profundo */
-    --sb-text-muted:    #1e324f;   /* corpo secundário — escurecido (era #334155, ratio ≈5.5:1 no bg novo) */
-    --sb-text-on-dark:  #f0f6ff;   /* texto em fundos escuros */
-    --sb-text-sub-dark: #c5d4e8;   /* subtítulo em fundos escuros */
+  /* Brand */
+  --sb-primary:       #07101f;   /* azul-marinho profundo */
+  --sb-secondary:     #0d1a2e;   /* azul-marinho médio */
+  --sb-accent:        #1a55e3;   /* azul vibrante */
+  --sb-accent-dark:   #1040b8;   /* azul escuro para hover */
+  --sb-teal:          #0fa87a;   /* verde-teal da marca */
+
+  /* Superfícies */
+  --sb-bg:            #dde4ef;   /* fundo principal (mais escuro que #eef2f7 → texto muted contrasta mais) */
+  --sb-surface:       #ffffff;   /* cards / navbar */
+  --sb-surface-alt:   #f0f4fa;   /* fundo alternativo de seções */
+  --sb-border:        #b8c6d9;   /* bordas visíveis (escurecido de #dbe3ee) */
+
+  /* Texto */
+  --sb-text:          #0a1628;   /* texto base — quase preto */
+  --sb-text-strong:   #020c1b;   /* headings — preto profundo */
+  --sb-text-muted:    #1e324f;   /* corpo secundário — escurecido (era #334155, ratio ≈5.5:1 no bg novo) */
+  --sb-text-on-dark:  #f0f6ff;   /* texto em fundos escuros */
+  --sb-text-sub-dark: #c5d4e8;   /* subtítulo em fundos escuros */
+}
+
+/* ─── Reset & base ──────────────────────────────── */
+html, body {
+  background: var(--sb-bg);
+  color: var(--sb-text);
+}
+
+body {
+  font-family: Inter, sans-serif;
+}
+
+/* ─── Navbar ────────────────────────────────────── */
+.navbar {
+  background: var(--sb-surface);
+  border-bottom: 1.5px solid var(--sb-border);
+}
+
+.navbar-item,
+.navbar-link {
+  color: var(--sb-text-strong);   /* era #020617 — mantido, mas agora declarado explicitamente */
+  font-weight: 500;
+}
+
+.navbar-item:hover,
+.navbar-link:hover {
+  background: var(--sb-surface-alt);
+  color: var(--sb-accent-dark);
+}
+
+.navbar-brand .navbar-item {
+  color: var(--sb-text-strong);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Hero ──────────────────────────────────────── */
+.hero.is-sb {
+  background: linear-gradient(135deg, var(--sb-primary) 0%, #0d2244 55%, #0a3d4f 100%);
+  color: var(--sb-text-on-dark);
+}
+
+.hero .title {
+  color: var(--sb-text-on-dark);     /* #f0f6ff — ratio > 15:1 sobre fundo escuro */
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.hero .subtitle {
+  color: var(--sb-text-sub-dark);    /* #c5d4e8 — ratio ≈ 8.5:1 */
+  max-width: 42rem;
+}
+
+.hero p,
+.hero li,
+.hero .content {
+  color: var(--sb-text-sub-dark);
+}
+
+/* ─── Seções ────────────────────────────────────── */
+.section {
+  background: var(--sb-bg);
+}
+
+.section .title,
+.section h2,
+.section h3 {
+  color: var(--sb-text-strong);      /* #020c1b — ratio > 14:1 sobre #dde4ef */
+}
+
+.section p,
+.section .content,
+.section li {
+  color: var(--sb-text-muted);       /* #1e324f — ratio ≈ 8.2:1 sobre #dde4ef */
+  line-height: 1.75;
+}
+
+/* Seção com fundo branco alternado */
+.section.is-light {
+  background: var(--sb-surface);
+}
+
+.section.is-light p,
+.section.is-light .content,
+.section.is-light li {
+  color: var(--sb-text-muted);       /* #1e324f — ratio ≈ 10:1 sobre branco */
+}
+
+/* ─── Cards / Boxes ─────────────────────────────── */
+.box,
+.card,
+.soft-card,
+.glass-card {
+  background: var(--sb-surface);
+  color: var(--sb-text);
+  border: 1.5px solid var(--sb-border);
+  box-shadow: 0 10px 30px rgba(7, 16, 31, 0.10);
+}
+
+.box .title,
+.card .title,
+.soft-card .title,
+.glass-card .title {
+  color: var(--sb-text-strong);      /* ratio > 14:1 sobre branco */
+}
+
+.box p,
+.card p,
+.soft-card p,
+.glass-card p,
+.box .content,
+.card .content,
+.soft-card .content,
+.glass-card .content {
+  color: var(--sb-text-muted);       /* ratio ≈ 10:1 sobre branco */
+}
+
+/* <strong> dentro de cards: preto profundo, não herda cor do hero */
+.box strong,
+.card strong,
+.soft-card strong,
+.glass-card strong {
+  color: var(--sb-text-strong);      /* #020c1b — ratio > 14:1 sobre branco */
+  font-weight: 700;
+}
+
+/* ─── Tags ──────────────────────────────────────── */
+.tag.is-soft {
+  background: #d0ddf8;               /* fundo azul mais sólido (era 10% opacity, inlegível) */
+  color: #0f2e82;                    /* azul-marinho escuro — ratio ≈ 6.5:1 sobre #d0ddf8 */
+  border: 1.5px solid #9ab0ec;
+  font-weight: 600;
+}
+
+/* ─── Palavras em destaque dentro de cards (fundo branco) ── */
+/*
+  No card de Missão as palavras "Nordeste" e "DeepTech" usam cores
+  da marca, mas os tons originais (~#0fa87a teal e ~#2563eb azul)
+  têm ratio < 3:1 sobre branco — abaixo do mínimo WCAG AA.
+  Versões escurecidas abaixo garantem ratio ≥ 4.5:1 sobre #fff.
+*/
+
+/* Bulma helpers sobrescritos para fundo branco */
+.box .has-text-info,
+.card .has-text-info,
+.soft-card .has-text-info,
+.glass-card .has-text-info {
+  color: #0e3dbf !important;         /* ratio ≈ 6.2:1 sobre branco */
+}
+
+.box .has-text-success,
+.card .has-text-success,
+.soft-card .has-text-success,
+.glass-card .has-text-success {
+  color: #0a6e50 !important;         /* ratio ≈ 5.8:1 sobre branco */
+}
+
+.box .has-text-primary,
+.card .has-text-primary,
+.soft-card .has-text-primary,
+.glass-card .has-text-primary {
+  color: #0e3dbf !important;
+}
+
+/* Classes customizadas de destaque da marca */
+.text-accent,
+span.accent,
+.highlight-accent {
+  color: #0e3dbf;                    /* azul escuro — ratio ≈ 6.2:1 sobre branco */
+  font-weight: 600;
+}
+
+.text-teal,
+span.teal,
+.highlight-teal {
+  color: #0a6e50;                    /* teal escuro — ratio ≈ 5.8:1 sobre branco */
+  font-weight: 600;
+}
+
+/* Padrão genérico: qualquer <span> colorido dentro de card
+   que use as cores de marca originais (muito claras) */
+.box span[style*="color: #0fa87a"],
+.card span[style*="color: #0fa87a"],
+.box span[style*="color:#0fa87a"],
+.card span[style*="color:#0fa87a"] {
+  color: #0a6e50 !important;
+}
+
+.box span[style*="color: #2563eb"],
+.card span[style*="color: #2563eb"],
+.box span[style*="color:#2563eb"],
+.card span[style*="color:#2563eb"] {
+  color: #0e3dbf !important;
+}
+
+/* Linha divisória dentro do card (hr ou .divider) */
+.box hr,
+.card hr,
+.soft-card hr,
+.glass-card hr {
+  background-color: var(--sb-border);
+  height: 1.5px;
+  margin: 1rem 0;
+}
+
+/* Label de categoria dentro do card (ex: "Missão") */
+.box .card-label,
+.card .card-label,
+.box .label-meta,
+.card .label-meta {
+  color: var(--sb-text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Sub-itens do card com palavra-chave colorida + descrição */
+.card-stat-label,
+.mission-tag {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--sb-text-muted);       /* texto descrição — #1e324f sobre branco */
+}
+
+.card-stat-label strong,
+.mission-tag strong,
+.card-stat-label b,
+.mission-tag b {
+  font-weight: 700;
+  color: #0e3dbf;                    /* palavra-chave azul — ratio 6.2:1 */
+}
+
+.card-stat-label.is-teal strong,
+.mission-tag.is-teal strong,
+.card-stat-label.is-teal b,
+.mission-tag.is-teal b {
+  color: #0a6e50;                    /* palavra-chave teal — ratio 5.8:1 */
+}
+
+/* ─── Botão principal ───────────────────────────── */
+.button.is-sb {
+  background: linear-gradient(135deg, var(--sb-accent), var(--sb-teal));
+  border: none;
+  color: #ffffff;                    /* branco sobre gradiente — ratio > 4.5:1 */
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.button.is-sb:hover {
+  background: linear-gradient(135deg, var(--sb-accent-dark), #0d8f69);
+  color: #ffffff;
+  filter: brightness(1.04);
+}
+
+/* ─── Footer ────────────────────────────────────── */
+.footer {
+  background: var(--sb-primary);    /* #07101f */
+  border-top: 1.5px solid #1a2d46;
+}
+
+.footer p,
+.footer .content {
+  color: #c5d4e8;                    /* ratio ≈ 8:1 sobre #07101f */
+}
+
+.footer a {
+  color: #7eb8f5;                    /* azul claro — ratio ≈ 5:1 sobre #07101f */
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer a:hover {
+  color: #a8d0ff;
+}
+
+/* ─── Base global: evita overflow horizontal ──────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; max-width: 100%; }
+
+/* ─── Componentes de hero ────────────────────────── */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sb-text-sub-dark);
+  letter-spacing: 0.02em;
+}
+
+.mini-stat { display: flex; flex-direction: column; gap: 0.15rem; }
+.mini-stat strong { font-size: 0.95rem; font-weight: 700; color: var(--sb-text-strong); }
+.mini-stat span   { font-size: 0.8rem;  color: var(--sb-text-muted); }
+.section-title    { color: var(--sb-text-strong); }
+.feature-icon     { font-size: 1.75rem; margin-bottom: 0.75rem; line-height: 1; }
+
+/* Botão com email longo: quebra segura */
+.button {
+  white-space: normal;
+  word-break: break-word;
+  height: auto;
+  min-height: 2.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+/* ─── Mobile ( ≤ 768 px ) ────────────────────────── */
+@media screen and (max-width: 768px) {
+
+  .section           { padding: 2rem 1rem; }
+  .section.pt-0      { padding-top: 0; }
+  .section.pb-6      { padding-bottom: 1.5rem; }
+
+  /* Cards: padding menor, sem overflow */
+  .box, .card, .soft-card, .glass-card {
+    padding: 1.25rem !important;
+    width: 100%;
+    overflow: hidden;
   }
-  
-  /* ─── Reset & base ──────────────────────────────── */
-  html, body {
-    background: var(--sb-bg);
-    color: var(--sb-text);
+
+  #contato .box      { padding: 1.5rem 1rem !important; }
+
+  /* Botões: coluna única */
+  .buttons           { flex-direction: column; align-items: stretch; }
+  .buttons .button   {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 0.5rem !important;
+    margin-right: 0 !important;
   }
-  
-  body {
-    font-family: Inter, sans-serif;
+
+  /* Email no botão de contato */
+  #contato .button {
+    font-size: 0.82rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    word-break: break-all;
   }
-  
-  /* ─── Navbar ────────────────────────────────────── */
-  .navbar {
-    background: var(--sb-surface);
-    border-bottom: 1.5px solid var(--sb-border);
+
+  /* Hero: altura automática */
+  .hero.is-fullheight-with-navbar {
+    min-height: auto !important;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
-  
-  .navbar-item,
-  .navbar-link {
-    color: var(--sb-text-strong);   /* era #020617 — mantido, mas agora declarado explicitamente */
-    font-weight: 500;
-  }
-  
-  .navbar-item:hover,
-  .navbar-link:hover {
-    background: var(--sb-surface-alt);
-    color: var(--sb-accent-dark);
-  }
-  
-  .navbar-brand .navbar-item {
-    color: var(--sb-text-strong);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-  
-  /* ─── Hero ──────────────────────────────────────── */
-  .hero.is-sb {
-    background: linear-gradient(135deg, var(--sb-primary) 0%, #0d2244 55%, #0a3d4f 100%);
-    color: var(--sb-text-on-dark);
-  }
-  
-  .hero .title {
-    color: var(--sb-text-on-dark);     /* #f0f6ff — ratio > 15:1 sobre fundo escuro */
-    font-weight: 800;
-    letter-spacing: -0.04em;
-  }
-  
-  .hero .subtitle {
-    color: var(--sb-text-sub-dark);    /* #c5d4e8 — ratio ≈ 8.5:1 */
-    max-width: 42rem;
-  }
-  
-  .hero p,
-  .hero li,
-  .hero .content {
-    color: var(--sb-text-sub-dark);
-  }
-  
-  /* ─── Seções ────────────────────────────────────── */
-  .section {
-    background: var(--sb-bg);
-  }
-  
-  .section .title,
-  .section h2,
-  .section h3 {
-    color: var(--sb-text-strong);      /* #020c1b — ratio > 14:1 sobre #dde4ef */
-  }
-  
-  .section p,
-  .section .content,
-  .section li {
-    color: var(--sb-text-muted);       /* #1e324f — ratio ≈ 8.2:1 sobre #dde4ef */
-    line-height: 1.75;
-  }
-  
-  /* Seção com fundo branco alternado */
-  .section.is-light {
-    background: var(--sb-surface);
-  }
-  
-  .section.is-light p,
-  .section.is-light .content,
-  .section.is-light li {
-    color: var(--sb-text-muted);       /* #1e324f — ratio ≈ 10:1 sobre branco */
-  }
-  
-  /* ─── Cards / Boxes ─────────────────────────────── */
-  .box,
-  .card,
-  .soft-card,
-  .glass-card {
-    background: var(--sb-surface);
-    color: var(--sb-text);
-    border: 1.5px solid var(--sb-border);
-    box-shadow: 0 10px 30px rgba(7, 16, 31, 0.10);
-  }
-  
-  .box .title,
-  .card .title,
-  .soft-card .title,
-  .glass-card .title {
-    color: var(--sb-text-strong);      /* ratio > 14:1 sobre branco */
-  }
-  
-  .box p,
-  .card p,
-  .soft-card p,
-  .glass-card p,
-  .box .content,
-  .card .content,
-  .soft-card .content,
-  .glass-card .content {
-    color: var(--sb-text-muted);       /* ratio ≈ 10:1 sobre branco */
-  }
-  
-  /* <strong> dentro de cards: preto profundo, não herda cor do hero */
-  .box strong,
-  .card strong,
-  .soft-card strong,
-  .glass-card strong {
-    color: var(--sb-text-strong);      /* #020c1b — ratio > 14:1 sobre branco */
-    font-weight: 700;
-  }
-  
-  /* ─── Tags ──────────────────────────────────────── */
-  .tag.is-soft {
-    background: #d0ddf8;               /* fundo azul mais sólido (era 10% opacity, inlegível) */
-    color: #0f2e82;                    /* azul-marinho escuro — ratio ≈ 6.5:1 sobre #d0ddf8 */
-    border: 1.5px solid #9ab0ec;
-    font-weight: 600;
-  }
-  
-  /* ─── Palavras em destaque dentro de cards (fundo branco) ── */
-  /*
-    No card de Missão as palavras "Nordeste" e "DeepTech" usam cores
-    da marca, mas os tons originais (~#0fa87a teal e ~#2563eb azul)
-    têm ratio < 3:1 sobre branco — abaixo do mínimo WCAG AA.
-    Versões escurecidas abaixo garantem ratio ≥ 4.5:1 sobre #fff.
-  */
-  
-  /* Bulma helpers sobrescritos para fundo branco */
-  .box .has-text-info,
-  .card .has-text-info,
-  .soft-card .has-text-info,
-  .glass-card .has-text-info {
-    color: #0e3dbf !important;         /* ratio ≈ 6.2:1 sobre branco */
-  }
-  
-  .box .has-text-success,
-  .card .has-text-success,
-  .soft-card .has-text-success,
-  .glass-card .has-text-success {
-    color: #0a6e50 !important;         /* ratio ≈ 5.8:1 sobre branco */
-  }
-  
-  .box .has-text-primary,
-  .card .has-text-primary,
-  .soft-card .has-text-primary,
-  .glass-card .has-text-primary {
-    color: #0e3dbf !important;
-  }
-  
-  /* Classes customizadas de destaque da marca */
-  .text-accent,
-  span.accent,
-  .highlight-accent {
-    color: #0e3dbf;                    /* azul escuro — ratio ≈ 6.2:1 sobre branco */
-    font-weight: 600;
-  }
-  
-  .text-teal,
-  span.teal,
-  .highlight-teal {
-    color: #0a6e50;                    /* teal escuro — ratio ≈ 5.8:1 sobre branco */
-    font-weight: 600;
-  }
-  
-  /* Padrão genérico: qualquer <span> colorido dentro de card
-     que use as cores de marca originais (muito claras) */
-  .box span[style*="color: #0fa87a"],
-  .card span[style*="color: #0fa87a"],
-  .box span[style*="color:#0fa87a"],
-  .card span[style*="color:#0fa87a"] {
-    color: #0a6e50 !important;
-  }
-  
-  .box span[style*="color: #2563eb"],
-  .card span[style*="color: #2563eb"],
-  .box span[style*="color:#2563eb"],
-  .card span[style*="color:#2563eb"] {
-    color: #0e3dbf !important;
-  }
-  
-  /* Linha divisória dentro do card (hr ou .divider) */
-  .box hr,
-  .card hr,
-  .soft-card hr,
-  .glass-card hr {
-    background-color: var(--sb-border);
-    height: 1.5px;
-    margin: 1rem 0;
-  }
-  
-  /* Label de categoria dentro do card (ex: "Missão") */
-  .box .card-label,
-  .card .card-label,
-  .box .label-meta,
-  .card .label-meta {
-    color: var(--sb-text-muted);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  
-  /* Sub-itens do card com palavra-chave colorida + descrição */
-  .card-stat-label,
-  .mission-tag {
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--sb-text-muted);       /* texto descrição — #1e324f sobre branco */
-  }
-  
-  .card-stat-label strong,
-  .mission-tag strong,
-  .card-stat-label b,
-  .mission-tag b {
-    font-weight: 700;
-    color: #0e3dbf;                    /* palavra-chave azul — ratio 6.2:1 */
-  }
-  
-  .card-stat-label.is-teal strong,
-  .mission-tag.is-teal strong,
-  .card-stat-label.is-teal b,
-  .mission-tag.is-teal b {
-    color: #0a6e50;                    /* palavra-chave teal — ratio 5.8:1 */
-  }
-  
-  /* ─── Botão principal ───────────────────────────── */
-  .button.is-sb {
-    background: linear-gradient(135deg, var(--sb-accent), var(--sb-teal));
-    border: none;
-    color: #ffffff;                    /* branco sobre gradiente — ratio > 4.5:1 */
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-  
-  .button.is-sb:hover {
-    background: linear-gradient(135deg, var(--sb-accent-dark), #0d8f69);
-    color: #ffffff;
-    filter: brightness(1.04);
-  }
-  
-  /* ─── Footer ────────────────────────────────────── */
-  .footer {
-    background: var(--sb-primary);    /* #07101f */
-    border-top: 1.5px solid #1a2d46;
-  }
-  
-  .footer p,
-  .footer .content {
-    color: #c5d4e8;                    /* ratio ≈ 8:1 sobre #07101f */
-  }
-  
-  .footer a {
-    color: #7eb8f5;                    /* azul claro — ratio ≈ 5:1 sobre #07101f */
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-  
-  .footer a:hover {
-    color: #a8d0ff;
-  }
+
+  /* Hero: colunas empilhadas */
+  .hero .columns     { flex-direction: column; }
+  .hero .column      { width: 100% !important; flex: none !important; }
+  .hero .glass-card  { margin-top: 1.5rem; }
+
+  /* Títulos */
+  .title.is-1 { font-size: 2rem    !important; line-height: 1.2; }
+  .title.is-2 { font-size: 1.6rem  !important; }
+  .title.is-3 { font-size: 1.35rem !important; }
+
+  /* Cards de diferenciais: empilhados */
+  #diferenciais .columns { flex-direction: column; }
+  #diferenciais .column  { width: 100% !important; padding-bottom: 0; }
+
+  .feature-icon      { font-size: 1.4rem; }
+  .footer            { padding: 1.5rem 1rem; }
+
+  /* Seção visão */
+  .section .box.has-text-centered { padding: 1.5rem 1rem !important; }
+}
+
+/* ─── Tablet ( 769 px – 1023 px ) ───────────────── */
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  .section           { padding: 3rem 1.5rem; }
+  .box, .card, .soft-card, .glass-card { padding: 1.75rem !important; }
+  .hero .title.is-1  { font-size: 2.5rem !important; }
+  #contato .button   { font-size: 0.9rem; }
+}
